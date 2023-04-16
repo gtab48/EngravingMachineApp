@@ -1,0 +1,14 @@
+E:\EngravingMachineApp\EngravingMachineApp\bin\x64\Debug\EngravingMachineApp.exe.config
+E:\EngravingMachineApp\EngravingMachineApp\bin\x64\Debug\EngravingMachineApp.exe
+E:\EngravingMachineApp\EngravingMachineApp\bin\x64\Debug\EngravingMachineApp.pdb
+E:\EngravingMachineApp\EngravingMachineApp\bin\x64\Debug\Newtonsoft.Json.dll
+E:\EngravingMachineApp\EngravingMachineApp\bin\x64\Debug\Newtonsoft.Json.xml
+E:\EngravingMachineApp\EngravingMachineApp\obj\x64\Debug\EngravingMachineApp.csproj.AssemblyReference.cache
+E:\EngravingMachineApp\EngravingMachineApp\obj\x64\Debug\EngravingMachineApp.csproj.SuggestedBindingRedirects.cache
+E:\EngravingMachineApp\EngravingMachineApp\obj\x64\Debug\EngravingMachineApp.Form1.resources
+E:\EngravingMachineApp\EngravingMachineApp\obj\x64\Debug\EngravingMachineApp.Properties.Resources.resources
+E:\EngravingMachineApp\EngravingMachineApp\obj\x64\Debug\EngravingMachineApp.csproj.GenerateResource.cache
+E:\EngravingMachineApp\EngravingMachineApp\obj\x64\Debug\EngravingMachineApp.csproj.CoreCompileInputs.cache
+E:\EngravingMachineApp\EngravingMachineApp\obj\x64\Debug\EngravingMachineApp.csproj.CopyComplete
+E:\EngravingMachineApp\EngravingMachineApp\obj\x64\Debug\EngravingMachineApp.exe
+E:\EngravingMachineApp\EngravingMachineApp\obj\x64\Debug\EngravingMachineApp.pdb

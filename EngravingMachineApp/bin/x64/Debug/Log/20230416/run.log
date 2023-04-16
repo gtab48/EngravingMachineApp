@@ -1,0 +1,88 @@
+[2023-04-16 01:44:44.262]FilePath:E:\雕刻机\项目\SDK\X64_BslApp5.2.6(20220930)\config\BslCAD.cfg
+[2023-04-16 01:44:44.266]FilePath:E:\雕刻机\项目\SDK\X64_BslApp5.2.6(20220930)\config\LmcPar.cfg
+[2023-04-16 01:44:44.271]corfile=E:\雕刻机\项目\SDK\X64_BslApp5.2.6(20220930)\sea.cor
+[2023-04-16 01:44:44.283]CExecutor::GetDevPathMap size=0
+[2023-04-16 01:44:44.291]开始枚举网口列表...
+[2023-04-16 01:44:44.293]网口:169.254.25.96
+[2023-04-16 01:44:44.296]网口:192.168.31.103
+[2023-04-16 01:44:44.332]网络打标卡准备上线:169.254.25.2
+[2023-04-16 01:44:44.402]网络打标卡上线:169.254.25.2
+[2023-04-16 01:44:44.403]CExecutor::GetDevPathMap size=0
+[2023-04-16 01:44:44.444]CUDPTransmit::OpenDev, 0
+[2023-04-16 01:44:44.450]GetSSVersion FPGA:5.8.19.17
+[2023-04-16 01:44:45.158]GetDevID 加密卡:9250179997539
+[2023-04-16 01:44:48.127]CheckCardRegisteStatus IsLegalVersion
+[2023-04-16 01:44:50.286]CMarkAdaptor::CloseExecutor:: 0
+[2023-04-16 01:44:50.286]CUDPTransmit::CloseDev, 0
+[2023-04-16 10:47:38.737]FilePath:E:\EngravingMachineApp\EngravingMachineApp\bin\x64\Debug\config\BslCAD.cfg
+[2023-04-16 10:47:38.744]FilePath:E:\EngravingMachineApp\EngravingMachineApp\bin\x64\Debug\config\LmcPar.cfg
+[2023-04-16 10:47:38.747]corfile=E:\EngravingMachineApp\EngravingMachineApp\bin\x64\Debug\sea.cor
+[2023-04-16 10:47:38.767]CExecutor::GetDevPathMap size=0
+[2023-04-16 10:47:38.871]开始枚举网口列表...
+[2023-04-16 10:47:38.875]网口:169.254.25.96
+[2023-04-16 10:47:38.885]网口:192.168.31.103
+[2023-04-16 10:47:38.925]绑定板卡:169.254.25.2成功!
+[2023-04-16 10:47:38.946]网络打标卡准备上线:169.254.25.2
+[2023-04-16 10:48:07.757]FilePath:E:\EngravingMachineApp\EngravingMachineApp\bin\x64\Debug\config\BslCAD.cfg
+[2023-04-16 10:48:07.759]FilePath:E:\EngravingMachineApp\EngravingMachineApp\bin\x64\Debug\config\LmcPar.cfg
+[2023-04-16 10:48:07.764]corfile=E:\EngravingMachineApp\EngravingMachineApp\bin\x64\Debug\sea.cor
+[2023-04-16 10:48:07.779]CExecutor::GetDevPathMap size=0
+[2023-04-16 10:48:07.861]开始枚举网口列表...
+[2023-04-16 10:48:07.863]网口:169.254.25.96
+[2023-04-16 10:48:07.866]网口:192.168.31.103
+[2023-04-16 10:48:07.904]网络打标卡准备上线:169.254.25.2
+[2023-04-16 10:52:45.704]FilePath:E:\EngravingMachineApp\EngravingMachineApp\bin\x64\Debug\config\BslCAD.cfg
+[2023-04-16 10:52:45.707]FilePath:E:\EngravingMachineApp\EngravingMachineApp\bin\x64\Debug\config\LmcPar.cfg
+[2023-04-16 10:52:45.711]corfile=E:\EngravingMachineApp\EngravingMachineApp\bin\x64\Debug\sea.cor
+[2023-04-16 10:52:45.727]CExecutor::GetDevPathMap size=0
+[2023-04-16 10:52:45.820]开始枚举网口列表...
+[2023-04-16 10:52:45.822]网口:169.254.25.96
+[2023-04-16 10:52:45.830]网口:192.168.31.103
+[2023-04-16 10:52:45.867]网络打标卡准备上线:169.254.25.2
+[2023-04-16 10:58:15.232]FilePath:E:\EngravingMachineApp\EngravingMachineApp\bin\x64\Debug\config\BslCAD.cfg
+[2023-04-16 10:58:15.239]FilePath:E:\EngravingMachineApp\EngravingMachineApp\bin\x64\Debug\config\LmcPar.cfg
+[2023-04-16 10:58:15.243]corfile=E:\EngravingMachineApp\EngravingMachineApp\bin\x64\Debug\sea.cor
+[2023-04-16 10:58:15.277]CExecutor::GetDevPathMap size=0
+[2023-04-16 10:58:15.412]开始枚举网口列表...
+[2023-04-16 10:58:15.413]网口:169.254.25.96
+[2023-04-16 10:58:15.416]网口:192.168.31.103
+[2023-04-16 10:58:15.453]网络打标卡准备上线:169.254.25.2
+[2023-04-16 11:16:06.316]FilePath:E:\EngravingMachineApp\EngravingMachineApp\bin\x64\Debug\config\BslCAD.cfg
+[2023-04-16 11:16:06.319]FilePath:E:\EngravingMachineApp\EngravingMachineApp\bin\x64\Debug\config\LmcPar.cfg
+[2023-04-16 11:16:06.324]corfile=E:\EngravingMachineApp\EngravingMachineApp\bin\x64\Debug\sea.cor
+[2023-04-16 11:16:06.339]CExecutor::GetDevPathMap size=0
+[2023-04-16 11:16:06.437]开始枚举网口列表...
+[2023-04-16 11:16:06.438]网口:169.254.25.96
+[2023-04-16 11:16:06.443]网口:192.168.31.103
+[2023-04-16 11:16:06.480]网络打标卡准备上线:169.254.25.2
+[2023-04-16 11:16:06.515]网络打标卡上线:169.254.25.2
+[2023-04-16 11:16:06.515]CExecutor::GetDevPathMap size=0
+[2023-04-16 11:16:06.520]CUDPTransmit::OpenDev, 0
+[2023-04-16 11:16:06.528]GetSSVersion FPGA:5.8.19.17
+[2023-04-16 11:16:07.221]GetDevID 加密卡:9250179997539
+[2023-04-16 11:16:10.184]CheckCardRegisteStatus IsLegalVersion
+[2023-04-16 11:16:39.123]CUDPTransmit::ReadCmd fail 20, m_dwSeqCmd=11 ip=169.254.25.2 left=3
+[2023-04-16 11:16:39.123]error 0101: ReadAndWriteCmd time out, retry 1
+[2023-04-16 11:16:39.179]error CCmdExecutor ReadAndWriteCmd seq check fail 11<=>12
+[2023-04-16 11:20:46.309]FilePath:E:\EngravingMachineApp\EngravingMachineApp\bin\x64\Debug\config\BslCAD.cfg
+[2023-04-16 11:20:46.311]FilePath:E:\EngravingMachineApp\EngravingMachineApp\bin\x64\Debug\config\LmcPar.cfg
+[2023-04-16 11:20:46.315]corfile=E:\EngravingMachineApp\EngravingMachineApp\bin\x64\Debug\sea.cor
+[2023-04-16 11:20:46.332]CExecutor::GetDevPathMap size=0
+[2023-04-16 11:20:46.414]开始枚举网口列表...
+[2023-04-16 11:20:46.415]网口:169.254.25.96
+[2023-04-16 11:20:46.418]网口:192.168.31.103
+[2023-04-16 11:20:46.454]网络打标卡准备上线:169.254.25.2
+[2023-04-16 11:20:46.480]网络打标卡上线:169.254.25.2
+[2023-04-16 11:20:46.481]CExecutor::GetDevPathMap size=0
+[2023-04-16 11:20:46.489]CUDPTransmit::OpenDev, 0
+[2023-04-16 11:20:46.493]GetSSVersion FPGA:5.8.19.17
+[2023-04-16 11:20:47.192]GetDevID 加密卡:9250179997539
+[2023-04-16 11:20:50.022]CUDPTransmit::ReadCmd fail 20, m_dwSeqCmd=7 ip=169.254.25.2 left=3
+[2023-04-16 11:20:50.168]CheckCardRegisteStatus IsLegalVersion
+[2023-04-16 11:20:50.168]error CCmdExecutor ReadAndWriteCmd cmd check fail 0101<=>5C0C
+[2023-04-16 11:20:54.874]CUDPTransmit::ReadCmd fail 20, m_dwSeqCmd=1 ip=169.254.25.2 left=3
+[2023-04-16 11:20:54.874]error 0101: ReadAndWriteCmd time out, retry 1
+[2023-04-16 11:20:54.930]error CCmdExecutor ReadAndWriteCmd seq check fail 1<=>2
+[2023-04-16 11:21:09.061]CUDPTransmit::ReadCmd fail 20, m_dwSeqCmd=4 ip=169.254.25.2 left=3
+[2023-04-16 11:21:09.061]error 0101: ReadAndWriteCmd time out, retry 1
+[2023-04-16 11:21:09.116]error CCmdExecutor ReadAndWriteCmd seq check fail 4<=>5
