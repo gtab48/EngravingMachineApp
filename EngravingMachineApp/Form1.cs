@@ -19,13 +19,16 @@ namespace EngravingMachineApp
 {
     public partial class Form1 : Form
     {
-        private static MarkAPI MarkAPI = new MarkAPI("MarkSDK.dll"); //加载MarkSDK.dll动态库
-
-        private static MarkAPI Calib = new MarkAPI("Calib.dall");//加载Caib.dll动态库
-
-        public static Dictionary<string,string> map = new Dictionary<string,string>();//设备列表
-
-        private bool stop;//是否停止
+        //当前设备ID
+        public String DeviceID;
+        //加载MarkSDK.dll动态库
+        private static MarkAPI MarkAPI = new MarkAPI("MarkSDK.dll"); 
+        //加载Caib.dll动态库
+        private static MarkAPI Calib = new MarkAPI("Calib.dall");
+        //设备列表
+        public static Dictionary<string,string> map = new Dictionary<string,string>();
+        //是否停止
+        private bool stop;
 
         static int DBT_DEVICEARRIVAL = 0x8000;     //设备插入
         static int DBT_DEVICEREMOVECOMPLETE = 0x8004;  //设备移除
@@ -64,6 +67,7 @@ namespace EngravingMachineApp
         public Form1()
         {
             InitializeComponent();
+            stop = true;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -103,9 +107,6 @@ namespace EngravingMachineApp
             AllowNotifications(this.Handle, true);
         }
 
-
-
-        
         /// <summary>
         /// 允许一个窗口或者服务接收所有硬件的通知
         /// 注:目前还没有找到一个比较好的方法来处理如果通知服务。
@@ -131,94 +132,6 @@ namespace EngravingMachineApp
                 return false;
             }
         }
-
-
-        protected override void WndProc(ref Message m)
-        {
-            if (m.Msg == WM_DEVICECHANGE)
-            {
-                int nEventType = m.WParam.ToInt32();
-                if (nEventType >= 0x8000)
-                {
-                    DEV_BROADCAST_HDR lpdb = new DEV_BROADCAST_HDR();
-                    lpdb = (DEV_BROADCAST_HDR)m.GetLParam(lpdb.GetType());
-                    switch (lpdb.dbch_devicetype)
-                    {
-                        case DBT_DEVTYP_DEVICEINTERFACE:
-                            {
-                                DEV_BROADCAST_DEVICEINTERFACE pDevInf = (DEV_BROADCAST_DEVICEINTERFACE)Marshal.PtrToStructure(m.LParam, typeof(DEV_BROADCAST_DEVICEINTERFACE));
-                                //设备名称
-                                String strDevPath = System.Text.Encoding.Unicode.GetString(pDevInf.dbcc_name).TrimEnd('\0');
-                                int iPos = strDevPath.IndexOf('\0');
-                                if (iPos > 0)
-                                {//去掉多余的\0
-                                    strDevPath = strDevPath.Substring(0, iPos);
-                                }
-                                if (nEventType == DBT_DEVICEARRIVAL)  //DBT_DEVICEARRIVAL 有设备插入
-                                {//插入新设备
-                                    object[] param = new object[3];
-                                    param[0] = MarkAPI;
-                                    param[1] = strDevPath;		//当前变化的设备路径
-                                    param[2] = true;
-
-                                    ThreadReInitDevices(param);
-                                    //   Thread threadC = new Thread(ThreadReInitDevices);
-                                    //   threadC.Start(param);
-                                }
-                                else if (nEventType == DBT_DEVICEREMOVECOMPLETE)  //DBT_DEVICEREMOVECOMPLETE 有设备拔出
-                                {//拔掉设备
-                                    object[] param = new object[3];
-                                    param[0] = MarkAPI;
-                                    param[1] = strDevPath;		//当前变化的设备路径
-                                    param[2] = false;
-
-                                    ThreadReInitDevices(param);
-                                    //    Thread threadC = new Thread(ThreadReInitDevices);
-                                    //    threadC.Start(param);
-                                }
-                                break;
-                            }
-                        default:
-                            break;
-                    }//switch
-                }//event
-            }//WM_DEVICECHANGE
-            else if (m.Msg == WM_DEVICECHANGE_UDP)
-            {
-                BSL_UDPDeviceChanged func = (BSL_UDPDeviceChanged)MarkAPI.Invoke("OnUDPDeviceChanged", typeof(BSL_UDPDeviceChanged));
-                if (func != null)
-                {
-                    BslErrCode iRes = func(m.WParam, m.LParam);
-                    if (iRes == BslErrCode.BSL_ERR_SUCCESS)
-                    {
-                        bool bAdd = false;
-                        if (m.WParam.ToInt32() == 3)
-                        {
-                            //让标刻按钮可用
-                            this.Invoke((EventHandler)delegate { OnBnClickedBtnStop(this, null); });
-
-                            //这里必须等待标刻线程退出后
-                            while (!this.stop) ;
-
-                            //刷新设备列表
-                            this.Invoke((EventHandler)delegate { GetFreshDevlist(); });
-                        }
-                        else
-                        {
-                            //刷新设备列表
-                            this.Invoke((EventHandler)delegate { GetFreshDevlist(); });
-                        }
-
-                    }
-                }
-            }
-
-            //调用基类的同名方法
-            base.WndProc(ref m);
-        }
-
-
-
         /// <summary>
         /// 刷新或获取设备ID
         /// </summary>
@@ -239,6 +152,10 @@ namespace EngravingMachineApp
                         for (int i = 0; i < iCount; i++)
                         {
                             string str = System.Text.Encoding.Default.GetString(vDevID[i].wszDevName).TrimEnd('\0');
+                            if (DeviceID == null) 
+                            {
+                                DeviceID = str;
+                            }
                             map.Add("设备名称" + i, str);
                         }
                     }
@@ -254,20 +171,82 @@ namespace EngravingMachineApp
             }
         }
 
-        /// <summary>
-        /// 停止
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnBnClickedBtnStop(object sender, EventArgs e)
+
+        protected override void WndProc(ref Message m)
         {
-           
+            int EventType = m.WParam.ToInt32();
+            if (EventType >= 0x8000)
+            {
+                DEV_BROADCAST_HDR lpdb = new DEV_BROADCAST_HDR();
+                lpdb = (DEV_BROADCAST_HDR)m.GetLParam(lpdb.GetType());
+                switch (lpdb.dbch_devicetype)
+                {
+                    case DBT_DEVTYP_DEVICEINTERFACE:
+                        {
+                            DEV_BROADCAST_DEVICEINTERFACE pDevInf = (DEV_BROADCAST_DEVICEINTERFACE)Marshal.PtrToStructure(m.LParam, typeof(DEV_BROADCAST_DEVICEINTERFACE));
+                            //设备名称
+                            String strDevPath = System.Text.Encoding.Unicode.GetString(pDevInf.dbcc_name).TrimEnd('\0');
+                            int iPos = strDevPath.IndexOf('\0');
+                            if (iPos > 0)
+                            {//去掉多余的\0
+                                strDevPath = strDevPath.Substring(0, iPos);
+                            }
+                            if (EventType == DBT_DEVICEARRIVAL)  //DBT_DEVICEARRIVAL 有设备插入
+                            {//插入新设备
+                                object[] param = new object[3];
+                                param[0] = MarkAPI;
+                                param[1] = strDevPath;      //当前变化的设备路径
+                                param[2] = true;
+
+                                ThreadReInitDevices(param);
+                                //   Thread threadC = new Thread(ThreadReInitDevices);
+                                //   threadC.Start(param);
+                            }
+                            else if (EventType == DBT_DEVICEREMOVECOMPLETE)  //DBT_DEVICEREMOVECOMPLETE 有设备拔出
+                            {//拔掉设备
+                                object[] param = new object[3];
+                                param[0] = MarkAPI;
+                                param[1] = strDevPath;      //当前变化的设备路径
+                                param[2] = false;
+
+                                ThreadReInitDevices(param);
+                                //    Thread threadC = new Thread(ThreadReInitDevices);
+                                //    threadC.Start(param);
+                            }
+                            break;
+                        }
+                    default:
+                        break;
+                }
+            }
+            else if (m.Msg == WM_DEVICECHANGE_UDP) 
+            {
+                BSL_UDPDeviceChanged func = (BSL_UDPDeviceChanged)MarkAPI.Invoke("OnUDPDeviceChanged", typeof(BSL_UDPDeviceChanged));
+                if (func != null) 
+                {
+                    BslErrCode iRes = func(m.WParam, m.LParam);
+                    if (iRes == BslErrCode.BSL_ERR_SUCCESS)
+                    {
+                        if (m.WParam.ToInt32() == 3) 
+                        {
+                            HttpServer.DeviceStop(DeviceID);
+                            //这里必须等待标刻线程退出后
+                            while (!this.stop) ;
+
+                            this.Invoke((EventHandler)delegate { GetFreshDevlist(); });
+                        }
+                        else
+                        {
+                            this.Invoke((EventHandler)delegate { GetFreshDevlist(); });
+                        }
+                    }
+                }
+            }
+            //调用基类的同名方法
+            base.WndProc(ref m);
         }
 
-        /// <summary>
-        /// 设备初始化 线程函数
-        /// </summary>
-        /// <param name="obj"></param>
+
         void ThreadReInitDevices(object obj)
         {
             object[] param = (object[])obj;
@@ -275,7 +254,8 @@ namespace EngravingMachineApp
             if (!bAdd)
             {//拔出设备
                 //停止标刻
-                this.Invoke((EventHandler)delegate { OnBnClickedBtnStop(this, null); });
+                //让标刻按钮可用
+                this.Invoke((EventHandler)delegate { HttpServer.DeviceStop(DeviceID); });
                 //这里必须等待标刻线程退出后
                 while (!this.stop) ;
             }
